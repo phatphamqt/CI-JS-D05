@@ -1,0 +1,81 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#todo{
+    margin: auto;
+    width: 30%;
+    border: 3px solid #4CAF50;
+    padding: 10px;
+}
+
+#add{
+    padding: 5px 15px;
+    background-color: #4CAF50;
+    font-size: 20px;
+    border-radius: 4px;
+    transition-duration: 0.3s;
+    color: white;
+}
+
+#add:hover{
+    background-color: #409443;
+    color: white;
+}
+#text{
+    width: 200px;
+    height: 28px;
+    padding: 5px 15px;
+    font-size: 20px;
+}
+ul{
+    list-style-type: none;
+}
+#head{
+    margin-bottom: 10px;
+}
+#list > li{
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.del{
+    font-size: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 50%;
+}
+.checkbox{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+h2{
+    text-align: center;
+    margin: 20px 10px;
+}
+#head{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+input[type=checkbox]:checked + label {
+    text-decoration: line-through;
+  }
+#yes{
+    padding: 5px 15px;
+    background-color: #4CAF50;
+    font-size: 20px;
+    border-radius: 4px;
+    transition-duration: 0.3s;
+    color: white;
+}
+
+#yes:hover{
+    background-color: #409443;
+    color: white;
+}
