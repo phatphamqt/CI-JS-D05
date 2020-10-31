@@ -6,7 +6,8 @@
   !*** ./src/functions.js ***!
   \**************************/
 /*! namespace exports */
-/*! export addlistEnter [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export addClick [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export addEnter [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -14,69 +15,92 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "addlistEnter": () => /* binding */ addlistEnter
+/* harmony export */   "addClick": () => /* binding */ addClick,
+/* harmony export */   "addEnter": () => /* binding */ addEnter
 /* harmony export */ });
 head.insertAdjacentHTML('beforeend',`<button id="yes" >Yes</button>`)
 yes.style.display="none";
 
-// export function addlist(){
-//     add.addEventListener('click',function(){
-//         list.insertAdjacentHTML('beforeend',`
-//         <li>
-//         <input type="checkbox" class="checkbox"><label for="checkbox"> ${text.value} </label>
-//         <button class"edit">edit</button>
-//         <button class="del"><i class="fa fa-trash"></i></button>
-//         </li>`)
-//         text.value = ""
-//         for(let i=0;i<window.del.length;i++){
-//             window.del[i].addEventListener('click',function(e){
-//                 e.target.parentElement.remove()
-//             })
-//         }
-//     })
+//add list with click
+function addClick(){
+    add.addEventListener('click',function(){
+        if(text.value!=""){
+            list.insertAdjacentHTML('beforeend',`
+            <li>
+                <input type="checkbox" class="checkbox">
+                <label for="checkbox"><p class="content"> ${text.value} </p></label>
+                <button class="edit">edit</button>
+                <button class="del">x</button>
+            </li>`)
+            text.value = ""
+        } else {alert("too short!")}
+        deleteClick()
+    })
     
-// }
+}
 
-function addlistEnter(){
+//delete button adding with click
+function deleteClick(){
+    for(let i=0;i<window.del.length;i++){
+        window.del[i].addEventListener('click',function(e){
+            e.target.parentElement.remove()
+        })
+        window.edit[i].addEventListener('click',function(e){
+            console.log(e.target.parentElement.children[1].innerText)
+            text.value = e.target.parentElement.children[1].innerText
+            yes.style.display = "block";                     
+            yes.addEventListener('click',function(){
+                e.target.parentElement.children[1].innerText = text.value
+                yes.style.display = "none";
+            })
+    
+        })
+    }
+}
+
+
+//add list with enter 
+function addEnter(){
     var name = []
     text.addEventListener("keyup",function(e){
         if(e.keyCode ===13){
-            list.insertAdjacentHTML('beforeend',`
-            <li>
-            <input type="checkbox" class="checkbox"><label for="checkbox"><p class="content"> ${text.value} </p></label>
-            <button class="edit">edit</button>
-            <button class="del">x</button>
-            </li>`)
-            text.value = ""
-            name.push(text.value)
-        }
-        deletelistEnter()
-        editlistEnter()
+            if(text.value!=""){
+                name.push(text.value)
+                list.insertAdjacentHTML('beforeend',`
+                <li>
+                <input type="checkbox" class="checkbox">
+                <label for="checkbox"><p class="content"> ${text.value} </p></label>
+                <button class="edit">edit</button>
+                <button class="del">x</button>
+                </li>`)
+                text.value = ""
+                name.push(text.value)
+            } else{alert("too short!")}
+        } 
+        deleteEnter()
     })
-    function deletelistEnter(){
-        for(let j=0;j<window.del.length;j++){
-            window.del[j].addEventListener('click',function(e){
-                e.target.parentElement.remove()
-            })
-        }
-    }
-    function editlistEnter(){
-        for(let k=0;k<window.edit.length;k++){
-            window.edit[k].addEventListener('click',function(e){
-                console.log(e.target)
-                let p=document.getElementsByTagName("p")
-                console.log(p[k].innerHTML)
-                text.value = name[k]
-                yes.style.display = "block";                     
-                yes.addEventListener('click',function(){
-                    window.content[k].innerHTML = text.value
-                    yes.style.display = "none";
-                })
-            })
-        }
-    }
-     
 }
+
+//delete button adding with enter
+function deleteEnter(){
+    for(let j=0;j<window.del.length;j++){
+        window.del[j].addEventListener('click',function(e){
+            e.target.parentElement.remove()
+        })
+        // edit part
+        window.edit[j].addEventListener('click',function(e){
+            console.log(e.target.parentElement.children[1].innerText)
+            text.value = e.target.parentElement.children[1].innerText
+            yes.style.display = "block";                     
+            yes.addEventListener('click',function(){
+                e.target.parentElement.children[1].innerText = text.value
+                yes.style.display = "none";
+            })
+        })
+    }
+}
+     
+
 
 
 /***/ })
@@ -142,7 +166,7 @@ function addlistEnter(){
   \*********************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: __webpack_require__ */
-const {addlistEnter} = __webpack_require__(/*! ./functions */ "./src/functions.js")
+const {addEnter, addClick} = __webpack_require__(/*! ./functions */ "./src/functions.js")
 
 let head = document.getElementById("head")
 let text = document.getElementById("text")
@@ -150,13 +174,12 @@ let add = document.getElementById("add")
 let list = document.getElementById("list")
 window.del = document.getElementsByClassName("del")
 window.edit = document.getElementsByClassName("edit")
-window.content = document.getElementsByClassName("content")
 let yes= document.getElementById("yes")
 
 
 
-addlistEnter()
-
+addEnter()
+addClick()
 })();
 
 /******/ })()
