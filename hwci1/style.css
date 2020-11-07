@@ -1,0 +1,45 @@
+*{
+    font-family: Raleway,HelveticaNeue,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#meal{
+    text-align: center;
+    margin-top: 50px;
+    line-height: 40px;
+}
+#mealdetail{
+    margin: 50px 50px;
+}
+#body{
+    margin-left: 20px;
+}
+#pic{
+    width: 400px;
+    height: 400px;
+}
+
+#head{
+    font-weight: lighter;
+    height: 500px;
+    display: flex;
+}
+#p1{
+    margin-right: 100px;
+}
+#getmeal{
+    margin-top: 20px;
+    width: 120px;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 15px;
+    background-color: #33C3F0;
+    border: 1px solid #33C3F0;
+    color: white;
+    font-weight: bold;
+}
+
+#getmeal:hover{
+    background-color: #0593be;
+}
